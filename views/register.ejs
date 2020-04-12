@@ -1,0 +1,111 @@
+<div class="registro-form">
+    <p class="titulo-registro"> Transit  </p>
+    <p class="login-sub"> Se cadastre no Transit aqui! </p>
+    <% include ./partials/messages %>
+    <form action="/user/register" method="post">
+        <input type='hidden' id='disponible' name='disponible' placeholder="Disponibilidade" value="Não"/>
+        <input type='hidden' id='rate' name='rate' placeholder="Media" value="0"/>
+        <input type='text' id='name' name='name' placeholder="Nome Completo" class="input-resgistre" required/>
+        <input type='text' id='cpf' name='cpf' placeholder="CPF" class='input-resgistre' required/>
+        <input type='email' id='email' name='email' placeholder="E-mail" class="input-resgistre" required/>
+        <input type='password' id='password' name='password' placeholder="Senha" class="input-resgistre" required/>
+        <input type='password' id='password2' name='password2' placeholder="Confirme sua senha" class="input-resgistre" required/>
+        <p id='aviso'></p>
+        <input type='number' id='age' name='age' placeholder="Idade" class="input-resgistre" required/>
+        <select id='typo' name='typo' class="select" required>
+            <option value='Transporte'> Fazer transportes </option>
+            <option value='Normal'> Fazer pedidos </option>
+        </select>
+        <input type='checkbox' id='eula' name='eula' class='checkbox' value='concordo' required><span class='leia' onclick='eula();'> Leia e aceite os termos de uso </span>
+        <button type='submit' class="btn-login"> Create </button>
+        <p id='rdp-login'>Powered by OtterSystems Corp</p>
+    </form>
+</div>
+<div class='eula'>
+    <h1> Termos de uso </h1>
+    <div class='conteudo-eula'>
+        <p class='titulo-termos'>Atualização 22 de Abril de 2019</p>
+        <h3> Bem vindo ao Transit </h3>
+        <p> O sistema Transit é uma API onde é possivel realizar a busca e pedido por serviços de
+        transporte e frete por todo o território brasileiro. Você pode utilizar este sistema para
+        pedir uma carga vinda de outra cidade negociando um contrato com pessoas da origem ou com
+        pessoas de sua própria cidade.</p>
+        <h3> Uso do sistema </h3>
+        <p>
+            Faça uso correto de nossos serviços, os utilizando de acordo com as formas indicadas
+            e fornecidas por nós. Utilize as funcionalidades de acordo com a lei e regulamentações,
+            sempre cumprindo com as diretrizes aqui propostas.<br/>
+            Utilizar o Transit sem respeitar os termos de uso pode implicar na suspensão e
+            cancelamento de nossos serviços para o usuário, e se necessário serão disponibilizados
+            dados do perfil infrator para investigações de má conduta.<br/>
+        </p>
+        <h3> Regras de uso </h3>
+        <ul>
+            <li>
+                Os serviços ofertados no Transit devem ser oferecidos com honestidade e compromisso.
+            </li>
+            <li>
+                Pedidos falsos serão investigados e implicarão em multa ou suspensão dos seviços.
+            </li>
+            <li>
+                Forma e data de pagamento devem ser combinados entre contratante e contrado, de
+                forma que não aja parte desfavorecida. Por exemplo, o serviço será pago após ser
+                feito, para evitar transtornos quanto a produtos roubados ou extraviados.
+            </li>
+            <li>
+                Informações sobre pedido serão disponibilizados em caso de eventuais problemas quanto
+                ao serviço contratado ou conduta do contratante.
+            </li>
+            <li>
+                Os serviços ofertados neste site devem ser somente sobre o propósito do site, no caso
+                o transporte e fretagem.
+            </li>
+            <li>
+                As cargas devem atender as leis e regulamentações nacionais, assim como serem de origem
+                explicita e legal.
+            </li>
+            <li>
+                Cargas avariadas ou roubadas durante o transporte são de responsabilidade do transportador.
+            </li>
+            <li>
+                Comentarios de cunho pejorativo, ofensivo e injuriantes devem ser evitados.
+            </li>
+            <li>
+                As informações cedidas ao Transit devem ser verdadeiros, sendo sujeito a investigação os
+                dados suspeitos.
+            </li>
+        </ul>
+        <h3> Dados e Privacidade </h3>
+        <p>
+            Todos os dados privados disponibilizados ao Transit será guardado de forma segura e não será
+            utilizavel ou visivel por outros usuários do aplicativo. Exceto aqueles de propósito público
+            como nome, localização, dentre outros.<br/>
+            Os dados fornecidos devem ser legítimos, de acordo com a lei e não conter palavras
+            injuriosas ou ofensivas, é proibido também o uso de informações de terceiros e outros dados
+            que não remetam a identidade registrante.<br/>
+            Os dados colhetados no Transit será utilizado em prol do serviço do aplicativo, agilizando
+            filtragens de ofertas de acordo com localidade e qualidade dos serviços prestados. Os dados
+            também podem ser utilizados para fins estatísticos, como levantamento de dados comerciais,
+            geograficos ou de perfil, em prol do desenvolvimento das funcionalidades do Transit.<br/>
+            Os dados obtidos pelo Transit não serão sob hipótese alguma comercializados ou utilizadas
+            para fins criminosos. Os dados entretantos serão disponibilizados em casos com estrita ordem
+            juridica ou investigativa para a liberação destes.
+        </p>
+        <h3> Precauções e aviso </h3>
+        <p>
+            As informações são protegidas por senha, para que somente você tenha acesso a suas informações pessoais.
+            Sua senha é secreta e recomendamos que não a revele a ninguém. O Transit não irá solicitar, em nenhuma
+            hipótese, seja por e-mail ou telefone, sua senha pessoal. Lembre-se também de desconectar-se da sua conta
+            quando concluir sua navegação na Internet, especialmente de computadores públicos.<br/>
+            Nenhuma transmissão de dados na Internet é 100% segura. Sendo assim, mesmo com todos os esforços do
+            Transit paraproteger suas informações pessoais, não é possível garantir a segurança de todas as
+            informações que você venha a nos fornecer. É uma decisão pessoal a utilização do serviço nessas
+            condições.<br/>
+            É recomendado também que antes de contratar os serviços do Transit você realize buscas sobre o
+            contratado para atestar sua veracidade e legitimidade, assim como para o contratado se certificar
+            de que o serviço que irá realizar é seguro e dentro das leis.
+        </p>
+        <a href='/termos'> Todos os termos e regras </a>
+    </div>
+    <button id='fechar' onclick='eulaFecha();'> Fechar </button>
+</div>

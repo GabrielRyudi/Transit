@@ -1,0 +1,13 @@
+<div class="formulario">
+    <div class="logo-login"></div>
+    <p class="login"> Bem vindo ao Transit </p>
+    <p class="login-sub"> Entre no sistema ou se cadastre! </p>
+    <p class="error"><% include ./partials/messages %></p>
+    <form action="/user/login" method="post">
+        <input type='email' id='email' name='email' placeholder="E-mail" class="input-login" value="<% typeof email != 'undefined' ? email : '' %>" required/>
+        <input type='password' id='password' name='password' placeholder="Senha" class="input-login" value="<% typeof password != 'undefined' ? password : '' %>" required/>
+        <button type='submit' class="btn-login"> Log In </button>
+    </form>
+    <a href='/user/register' class="registro-login"> Não é registrado? Clique aqui! </a>
+    <p id='rdp-login'>Powered by OtterSystems Corp</p>
+</div>

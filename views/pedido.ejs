@@ -1,0 +1,75 @@
+<div class="grid-x menu">
+        <div class="cell small-8 medium-8 large-8">
+            <ul class="menu-ul">
+                <li class='links'><a href='/dashboard'> Principal </a></li>
+                <li class='links'><a href='/service/painel'> Painel </a></li>
+                <li class='links'><a href='/user/buscas'> Buscar </a></li>
+            </ul>
+        </div>
+        <div class="cell small-4 medium-4 large-4">
+            <ul class="menu-ul direita-vai">
+                <% if(logado.typo == 'Normal'){ %>
+                  <li class='links'><a href='/service/espera'> Em espera </a></li>
+                  <li class='links'><a href='/service/transitando'> A caminho </a></li>
+                <% }else{ %>
+                  <li class='links'><a href='/service/caixa'> Caixa </a></li>
+                  <li class='links'><a href='/service/ordenado'> Minhas entregas </a></li>
+                <% } %>
+                <li class='links'><a href='/user/usuario/<%= logado._id %>'> Perfil </a></li>
+                <li class='links'><a href='/user/logout/'> Sair <i class="fas fa-sign-out-alt"></i></a></li>
+            </ul>
+        </div>
+    </div>
+<div class="grid-x pedido">
+    <div class="cell titulo">
+        <p class='titulo-pedido'> Faça o seu pedido! </p>
+        <p class='contrato'>Contratante: <span><%=logado.name%></span>/Contratado: <span><%=user.name%></span></p>
+    </div>
+    <div class="cell formulario-pedido">
+        <form action="/service/pedido" method="post">
+            <input type='hidden' id='contratante' name='contratante' value='<%= logado._id %>'>
+            <input type='hidden' id='contratado' name='contratado' value='<%= user._id %>'>
+            <input type='hidden' id='nomecont' name='nomecont' value='<%= logado.name %>'>
+            <input type='hidden' id='nomeusu' name='nomeusu' value='<%= user.name %>'>
+            <input type='hidden' id='situacao' name='situacao' value='A confirmar'/>
+            <label class='label-order'> Cidade origem </label>
+            <input type='text' id='cidadeorigem' name='cidadeorigem' class='input-order' value='<%= user.city %>' placeholder="Cidade de origem">
+            <Label class='label-order'> Ponto de busca </Label>
+            <input type='text' id='pontobusca' name='pontobusca' class='input-order cep' placeholder='Ponto de busca, ex: Casa, Loja, etc'>
+            <Label class='label-order'> CEP </Label>
+            <input type='number' id='cep' name='cep' class='input-order cep' placeholder='Cep'>
+            <Label class='label-order'> Rua </Label>
+            <input type='text' id='rua' name='rua' class='input-order' placeholder='Rua'>
+            <Label class='label-order'> Bairro </Label>
+            <input type='text' id='bairro' name='bairro' class='input-order' placeholder='Bairro'>
+            <Label class='label-order'> Cidade de destino </Label>
+            <input type='text' id='cidade' name='cidade' class='input-order' placeholder='Cidade de destino' value='<%=logado.city%>'>
+            <Label class='label-order'> Número </Label>
+            <input type='number' id='numero' name='numero' class='input-order' placeholder='Número'>
+            <Label class='label-order'> Tipo de Carga </Label>
+            <input type='text' id='carga' name='carga' class='input-order' placeholder='Tipo de carga'>
+            <Label class='label-order'> Medida de carga </Label>
+            <select id='medida' name='medida' class='input-order'>
+                <option value='litros'> Litros </option>
+                <option value='metro cubico'> Metro cubico </option>
+                <option value='metro quadrado'> Metro quadrado </option>
+                <option value='kilograma'> Kilo </option>
+                <option value='unidade'> Unidade </option>
+            </select>
+            <Label class='label-order'> Quantidade </Label>
+            <input type='number' id='quantidade' name='quantidade' class='input-order' placeholder='Quantidade'>
+            <script>
+                $('#quantidade').blur(function(){
+                    var qtd = $('#quantidade').val();
+                    var total = qtd * '<%=user.price%>';
+                    $('#valor').attr('value', total);
+                });
+            </script>
+            <Label class='label-order'> Valor </Label>
+            <input type='Number' id='valor' name='valor' class='input-order' placeholder="Valor total">
+            <button type='submit' class='btn-order'> Finalizar Pedido </button>
+            <% include ./partials/messages %>
+        </form>
+    </div>
+</div>
+<% include ./partials/footer %>

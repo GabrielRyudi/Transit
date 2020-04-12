@@ -1,0 +1,11 @@
+<div class='senha-container'>
+    <p class='senha-titulo'> Atualizar senha </p>
+    <form action='/user/passwordEdit?_method=put' method='post'>
+        <p class="senha-view-label">Insira sua senha</p>
+        <input type='password' id='senha' name='senha' placeholder='Senha' class='senha-input'>
+        <p class="senha-view-label">Confirme sua senha</p>
+        <input type='password' id='senha2' name='senha2' placeholder='Confirme sua senha' class='senha-input'>
+        <p id='aviso'></p>
+        <button type='submit' class='btn-senha' disabled>Salvar</button>
+    </form>
+</div>

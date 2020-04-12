@@ -1,0 +1,68 @@
+<div class="grid-x menu">
+    <div class="cell small-8 medium-8 large-8">
+        <ul class="menu-ul">
+            <li class='links'><a href='/dashboard'> Principal </a></li>
+            <li class='links'><a href='/service/painel'> Painel </a></li>
+            <li class='links'><a href='/user/buscas'> Buscar </a></li>
+        </ul>
+    </div>
+    <div class="cell small-4 medium-4 large-4">
+        <ul class="menu-ul direita-vai">
+            <% if(logado.typo == 'Normal'){ %>
+                <li class='links'><a href='/service/espera'> Em espera </a></li>
+                <li class='links'><a href='/service/transitando'> A caminho </a></li>
+            <% }else{ %>
+                <li class='links'><a href='/service/caixa'> Caixa </a></li>
+                <li class='links'><a href='/service/ordenado'> Minhas entregas </a></li>
+            <% } %>
+            <li class='links'><a href='/user/usuario/<%= logado._id %>'> Perfil </a></li>
+            <li class='links'><a href='/user/logout/'> Sair <i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div class='grid-x perfil'>
+    <div class="cell small-5 medium-5 large-4 pdt">
+        <div class='photo'>
+            <img src='/img/no-img.jpg' class='user-photo'/>
+        </div>
+        <% if(user.typo != 'Normal'){ %>
+            <button class='btn-pedido'><a href='/user/pedido/<%= user._id %>'> Pedido </a></button>    
+        <% }else{ %>
+            <button class='btn-pedido' disabled> Pedido </button>
+        <% } %>
+        <button class='btn-historico'><a href='/service/completos'> Histórico </a></button>
+        <button class='btn-denuncia'><a href='/user/denuncia/<%= user._id %>' > Denúnciar </a></button>
+    </div>
+    <div class="cell small-7 medium-7 large-8 hr">
+        <p class='user-nome-perfil'><%= user.name %></p>
+        <p class='user-city-perfil'>
+            <%= user.city %> &bull;
+            <%= user.age %> &bull;
+            <% if(user.typo != 'Normal'){ %>
+                R$<%= user.price %>.00 &bull;
+            <% } %>
+            <%= user.typo %>
+        </p>
+        <div class='descricao-box'>
+            <span class='label-descri'>Descrição</span>
+            <div class='descricao-perfil'>
+                <p class='user-description-perfil'><%= user.description %></p>
+            </div>
+        </div>
+        <div class='descricao-box'>
+                <span class='label-descri'>Curriculo</span>
+                <div class='descricao-perfil'>
+                    <p class='user-description-perfil'><%= user.curriculum %></p>
+                </div>
+            </div>
+            <fieldset class='social-network-field'>
+                <legend class='social-network-legends'>Redes sociais</legend>
+                <p class='user-social'><i class="fas fa-envelope"></i> <%= user.email %> </p>
+                <p class='user-social'><i class="fab fa-whatsapp"></i> <%= user.phone %> </p>
+                <p class='user-social'><i class="fab fa-facebook-f"></i> <%= user.facebook %></p>
+                <p class='user-social'><i class="fab fa-linkedin-in"></i> <%= user.linkedin %></p>
+            </fieldset>
+
+    </div>
+</div>
+<% include ./partials/footer %>

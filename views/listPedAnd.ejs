@@ -1,0 +1,56 @@
+<div class="grid-x menu">
+    <div class="cell small-8 medium-8 large-8">
+        <ul class="menu-ul">
+            <li class='links'><a href='/dashboard'> Principal </a></li>
+            <li class='links'><a href='/service/painel'> Painel </a></li>
+            <li class='links'><a href='/user/buscas'> Buscar </a></li>
+        </ul>
+    </div>
+    <div class="cell small-4 medium-4 large-4">
+        <ul class="menu-ul direita-vai">
+            <% if(logado.typo == 'Normal'){ %>
+                <li class='links'><a href='/service/espera'> Em espera </a></li>
+                <li class='links'><a href='/service/transitando'> A caminho </a></li>
+            <% }else{ %>
+                <li class='links'><a href='/service/caixa'> Caixa </a></li>
+                <li class='links'><a href='/service/ordenado'> Minhas entregas </a></li>
+            <% } %>
+            <li class='links'><a href='/user/usuario/<%= logado._id %>'> Perfil </a></li>
+            <li class='links'><a href='/user/logout/'> Sair <i class="fas fa-sign-out-alt"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div class="lista">
+    <p class='titulo-buscas'> <i class="fas fa-list-ul"></i> Pedidos </p>
+    <div class="grid-x grid-margin-x">
+        <table class='tabela' id='andando'>
+            <thead>
+                <tr>
+                    <th>Destino</th>
+                    <th>Rua</th>
+                    <th>Número</th>
+                    <th>Contratante</th>
+                    <th>Carga</th>
+                    <th>Valor</th>
+                    <th>Status</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <%if(typeof pedidos != 'undefined' || typeof pedidos != [] || typeof pedidos != ''){ %>
+                <% pedidos.forEach(function(pedido){ %>
+                    <tr>
+                        <td> <%= pedido.cidadeorigem %> </td>
+                        <td> <%= pedido.rua %> </td>
+                        <td> <%= pedido.numero %> </td>
+                        <td> <%= pedido.nomecont %> </td>
+                        <td> <%= pedido.carga %> </td>
+                        <td> <%= pedido.valor %> </td>
+                        <td> <%= pedido.status %> </td>
+                        <td><a href='/service/<%= pedido._id %>'> Detalhes </a></td>
+                    </tr>
+                <% }); %>
+            <% }; %>
+        </table>
+    </div>
+</div>
+<% include ./partials/footer %>

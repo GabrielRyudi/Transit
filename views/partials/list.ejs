@@ -1,0 +1,21 @@
+<%if(typeof users != 'undefined' || typeof users != [] || typeof users != ''){ %>
+    <% users.forEach(function(user){ %>  
+        <div class='cell small-4 medium-4 large-4 user-card'>
+            <a href='/user/usuario/<%= user.id %>' class='card-link'>
+                <p class='user-nome'> <%= user.name %> </p>            
+                <p class='infos'>
+                    <%= user.typo %> 
+                    - 
+                    <%= user.city %> 
+                    <% if(user.typo != 'Normal'){ %>
+                        / R$<%= user.price %>
+                    <% } %>
+                    @ 
+                    <%= user.email %> 
+                    -  
+                    <%= user.rate %><span>&#9733;</span>
+                </p>
+            </a>
+        </div>
+    <% }); %>
+<% }; %>
